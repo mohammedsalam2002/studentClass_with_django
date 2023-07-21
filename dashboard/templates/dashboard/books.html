@@ -1,0 +1,154 @@
+{% extends 'dashboard/base.html' %} 
+{% load static %} 
+{% block content %}
+
+<style>
+  /* Custom CSS starts here */
+  body {
+    background-color: #f7f7f7; /* Light gray background */
+    font-family: Arial, sans-serif;
+  }
+
+  .container {
+    max-width: 800px; /* Limit content width for better readability */
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  h2 {
+    color: #333;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  p.s {
+    color: #888;
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+
+  form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+
+  input[type="text"] {
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    width: 70%;
+    font-size: 16px;
+  }
+
+  button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    background-color: #dc3545; /* Red color for the Search button */
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .card {
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .card:hover {
+    transform: translateY(-5px); /* Add a slight hover effect */
+  }
+
+  .card-header {
+    padding: 20px;
+  }
+
+  .card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px 0 0 10px;
+  }
+
+  .card h3 {
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .card h5 {
+    color: #555;
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  .card p {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .card strong {
+    font-weight: bold;
+  }
+
+  /* End of custom CSS */
+</style>
+
+<section class="container text-center mt-5">
+  <h2 class="mb-5">Search for books and browse your favorites</h2>
+  <p class="s">Just enter a search query to get started</p>
+
+  <form action="" method="post" class="mb-5">
+    {% csrf_token %}
+    {{ search }}
+    <button type="submit">Search</button>
+  </form>
+
+  {% for result in results %}
+  <a href="{{ result.preview }}" target="_blank" class="text-decoration-none text-reset">
+    <div class="card mb-4">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-md-3">
+            <img class="img-fluid rounded" src="{{ result.thumbnail }}" alt="{{ result.title }}">
+          </div>
+          <div class="col-md-9">
+            <h3 class="mb-2">{{ result.title }}</h3>
+            <h5 class="mb-4">{{ result.subtitle }}</h5>
+
+            {% if result.description %}
+            <p class="mb-3">{{ result.description }}</p>
+            {% endif %}
+
+            {% if result.categories %}
+            <p class="mb-3"><strong>Categories:</strong>
+              {% for category in result.categories %}
+              {{ category }}
+              {% endfor %}
+            </p>
+            {% endif %}
+
+            {% if result.count %}
+            <p class="mb-3"><strong>Count:</strong> {{ result.count }}</p>
+            {% endif %}
+
+            {% if result.rating %}
+            <p class="mb-3"><strong>Rating:</strong> {{ result.rating }}</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </a>
+  {% endfor %}
+</section>
+
+{% endblock content %}

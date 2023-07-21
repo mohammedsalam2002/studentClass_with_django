@@ -1,0 +1,22 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+  body { background-color: gray;
+</style>
+<div class="container d-flex justify-content-center align-items-center">
+  <div class="card border-0 shadow-lg rounded-lg">
+    <div class="card-body p-5">
+      <h2 class="card-title text-center mb-5">You are logged out</h2>
+      <div class="d-flex justify-content-center mb-4">
+        <a class="btn btn-lg btn-danger" href="{% url 'login' %}">Log In Again</a>
+      </div>
+      <p class="card-text text-center text-muted">
+        Need help? Contact our support team at
+        <a href="https://instagram.com/m.s0751?igshid=MzNlNGNkZWQ4Mg==">My Page</a>.
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock content %}

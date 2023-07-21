@@ -1,0 +1,52 @@
+{% extends 'dashboard/base.html' %} 
+{% load static %} 
+{% block content %}
+
+<style>
+    .description {
+        font-size: 1.2rem;
+        line-height: 1.5;
+        color: black;
+    }
+
+    hr {
+        border-top: 5px solid black;
+    }
+
+    .btn {
+        border-radius: 25px;
+        padding: 12px 25px;
+        font-size: 3.2rem;
+        font-weight: 500;
+        background-color: #007bff;
+        color: white;
+    } 
+
+    body {
+        background-color: gray;
+    }
+</style>
+
+
+<section class='text-center container'>
+
+    <div class="container">
+
+        <div class="content-section p-0 mt-5">
+
+            <div class="m-3">
+                <h2>{{notes.title}}</h2>
+            </div>
+
+            <hr class="p-0 m-0">
+            <p class="description m-5 p-5">
+                {{notes.description}}
+            </p>
+            <hr>
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock content %}

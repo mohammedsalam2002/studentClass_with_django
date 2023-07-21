@@ -1,0 +1,67 @@
+import tkinter as tk
+
+def diagnosis():
+    symptoms = []
+    if var1.get() == 1: symptoms.append("Headache")
+    if var2.get() == 1: symptoms.append("Nausea")
+    if var3.get() == 1: symptoms.append("Dizziness")
+    if var4.get() == 1: symptoms.append("Fatigue")
+    if var5.get() == 1: symptoms.append("Chest pain")
+    if var6.get() == 1: symptoms.append("Shortness of breath")
+    if var7.get() == 1: symptoms.append("Pallor")
+    if var8.get() == 1: symptoms.append("Rapid heartbeat")
+
+    if "Headache" in symptoms and "Nausea" in symptoms and "Dizziness" in symptoms:
+        label.config(text="Possible diagnosis: Migraine")
+    elif "Fatigue" in symptoms and "Chest pain" in symptoms and "Shortness of breath" in symptoms:
+        label.config(text="Possible diagnosis: Heart disease")
+
+    elif "Pallor" in symptoms and "Rapid heartbeat" in symptoms and "Headache" in symptoms and "Fatigue" in symptoms:
+          label.config(text="Possible diagnosis: Amemia")
+    else:
+        label.config(text="Could not make a diagnosis based on the given symptoms.") 
+
+root = tk.Tk()
+root.title("Expert System")
+
+var1 = tk.IntVar()
+check1 = tk.Checkbutton(root, text="       Headache", variable=var1,font=("Helvetica", 14))
+check1.grid(row=0, column=0)
+
+var2 = tk.IntVar()
+check2 = tk.Checkbutton(root, text="           Nausea", variable=var2,font=("Helvetica", 14))
+check2.grid(row=1, column=0)
+
+var3 = tk.IntVar()
+check3 = tk.Checkbutton(root, text="        Dizziness", variable=var3,font=("Helvetica", 14))
+check3.grid(row=2, column=0)
+
+var4 = tk.IntVar()
+check4 = tk.Checkbutton(root, text="           Fatigue", variable=var4,font=("Helvetica", 14))
+check4.grid(row=3, column=0)
+
+var5 = tk.IntVar()
+check5 = tk.Checkbutton(root, text="      Chest pain", variable=var5,font=("Helvetica", 14))
+check5.grid(row=4, column=0)
+
+var6 = tk.IntVar()
+check6 = tk.Checkbutton(root, text="   Shortness of breath   ", variable=var6,font=("Helvetica", 14))
+check6.grid(row=5, column=0)
+
+var7 = tk.IntVar()
+check6 = tk.Checkbutton(root, text="             Pallor", variable=var7,font=("Helvetica", 14))
+check6.grid(row=6, column=0)
+
+var8 = tk.IntVar()
+check6 = tk.Checkbutton(root, text="Rapid heartbeat", variable=var8 ,font=("Helvetica", 14))
+check6.grid(row=7, column=0)
+
+
+
+button = tk.Button(root, text="Diagnose", command=diagnosis)
+button.grid(row=8, column=0)
+
+label = tk.Label(root,font=("Helvetica", 14))
+label.grid(row=9, column=0 )
+
+root.mainloop()
